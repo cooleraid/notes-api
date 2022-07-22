@@ -5,6 +5,8 @@ const app = express()
 const routes = require('./src/routes')
 const Utils = require('./src/utils')
 const cors = require('cors')
+const swagger_ui = require('swagger-ui-express')
+const swagger_spec = require('./doc/swagger.js')
 
 app.use(cors({ origin: '*' }))
 app.use(express.json({ limit: '2mb' }))
@@ -42,6 +44,7 @@ app.use((req, res, next) => {
 
 app.use('/health', (_, res) => res.sendStatus(200))
 app.use('/v1', routes)
+app.use('/v1/doc', swagger_ui.serve, swagger_ui.setup(swagger_spec))
 app.use((req, res) => {
   return res.status(404).json({ status: "error", message: Utils.messages.__404(`${req.method} ${req.originalUrl}`) });
 });
