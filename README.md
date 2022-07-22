@@ -53,11 +53,11 @@ git clone https://github.com/cooleraid/notes-api.git
 Navigate to the project directory in your terminal and install the project's dependencies and migrations.
 
 ```bash
-npm run migrate
+npm install
 ```
 
 ```bash
-npm install
+npm run migrate
 ```
 
 Set the project's PORT by running:
